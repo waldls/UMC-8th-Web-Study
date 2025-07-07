@@ -1,7 +1,6 @@
 # UMC-8th-Web-Study
 
 ## 📌목차
-
 - 0주차: HTML/CSS/JavaScript
 - 1주차: TypeScript
 - 2주차: React (tsx, useState, contextAPI)
@@ -13,3 +12,6 @@
 - 8주차: Debouncing & Throttling
 - 9주차: Redux Toolkit / Zustand
 - 10주차: 최적화된 React 앱 (useMemo, memo, useCallback)
+
+## 🖥️ 실습 서버 레포지토리
+https://github.com/dydals3440/UMC-8th-BE
