@@ -12,19 +12,19 @@ import SignupPage from "./pages/SignupPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomeLayout />,
-    errorElement: <NotFoundPage />,
+    path: "/", // 홈 경로
+    element: <HomeLayout />, // element에는 대부분 공유하는 레이아웃들을 적어줌
+    errorElement: <NotFoundPage />, // 에러났을 경우
     children: [
-      { index: true, element: <HomePage /> },
-      { path: "login", element: <LoginPage /> },
-      { path: "signup", element: <SignupPage /> },
+      { index: true, element: <HomePage /> }, // 홈 경로를 의미
+      { path: "login", element: <LoginPage /> }, // 로그인 페이지
+      { path: "signup", element: <SignupPage /> }, // 회원가입 페이지
     ],
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />; // 라우터 연결
 }
 
 export default App;
