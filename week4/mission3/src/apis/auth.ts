@@ -7,6 +7,7 @@ import {
 } from "../types/auth";
 import { axiosInstance } from "../apis/axios";
 
+// 회원가입 요청
 export const postSignup = async (
   body: RequestSignupDto
 ): Promise<ResponseSignupDto> => {
@@ -15,6 +16,7 @@ export const postSignup = async (
   return data;
 };
 
+// 로그인 요청
 export const postSignin = async (
   body: RequestSigninDto
 ): Promise<ResponseSigninDto> => {
@@ -23,6 +25,7 @@ export const postSignin = async (
   return data;
 };
 
+// 내 정보 조회 요청 (request type 없음)
 export const getMyInfo = async (): Promise<ResponseMyInfoDto> => {
   const { data } = await axiosInstance.get("/v1/users/me");
   return data;

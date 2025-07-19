@@ -22,6 +22,7 @@ const LoginPage = () => {
       setItem(response.data.accessToken);
       console.log(response);
     } catch (error) {
+      // 로그인 실패했을 때 경고창 띄우기
       const err = error as Error;
       alert(err.message);
     }
