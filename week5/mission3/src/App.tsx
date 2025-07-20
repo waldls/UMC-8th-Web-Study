@@ -28,7 +28,7 @@ const publicRoutes: RouteObject[] = [
       { index: true, element: <HomePage /> },
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignupPage /> },
-      { path: "v1/auth/google/callback", element: <GoogleLoginRedirectPage /> },
+      { path: "v1/auth/google/callback", element: <GoogleLoginRedirectPage /> }, // 구글 로그인 리다이렉트 페이지
     ],
   },
 ];

@@ -31,10 +31,25 @@ const LoginPage = () => {
     }
   };
 
+  // 구글 로그인 버튼 클릭 시 실행되는 함수
   const handleGoogleLogin = () => {
+    // 벡엔드의 구글 로그인 엔드포인트로 리다이렉션
+    // 사용자가 이 주소로 이동하면 Google OAuth 인증 페이지로 연결됨
     window.location.href =
       import.meta.env.VITE_SERVER_API_URL + "/v1/auth/google/login";
   };
+
+  /* 
+    카카오 로그인 버튼 클릭 시 실행되는 함수를 만들고 싶으면 아래와 같이 만들면 됨
+
+    const handleKakaoLogin = () => {
+      // 백엔드의 Kakao 로그인 엔드포인트로 리디렉션
+      // 사용자가 이 주소로 이동하면 Kakao OAuth 인증 페이지로 연결됨
+      window.location.href =
+        import.meta.env.VITE_SERVER_API_URL + "/v1/auth/kakao/login";
+    };
+
+  */
 
   // 오류가 하나라도 있거나, 입력값이 비어있으면 버튼을 비활성화
   const isDisabled =
@@ -73,6 +88,7 @@ const LoginPage = () => {
         {errors?.password && touched?.password && (
           <div className="text-red-500 text-sm">{errors.password}</div>
         )}
+        {/* 로그인 버튼 */}
         <button
           type="button"
           onClick={handleSubmit}
@@ -81,9 +97,10 @@ const LoginPage = () => {
         >
           로그인
         </button>
+        {/* 구글 로그인 버튼 */}
         <button
           type="button"
-          onClick={handleGoogleLogin}
+          onClick={handleGoogleLogin} // handleGoogleLogin 연결
           disabled={isDisabled}
           className="w-full bg-blue-600 text-white py-3 rounded-md text-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer disabled:bg-gray-300"
         >
