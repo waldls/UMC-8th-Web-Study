@@ -5,15 +5,18 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  // 로그인 상태 확인 후 페이지 이동을 위한 훅
   const { login, accessToken } = useAuth();
   const navigate = useNavigate();
 
+  // accessToken이 이미 존재하면 로그인된 상태이므로, 홈("/")으로 이동
   useEffect(() => {
     if (accessToken) {
       navigate("/");
     }
   }, [navigate, accessToken]);
 
+  // useForm 훅으로 이메일/비밀번호 입력 상태 및 유효성 검사 결과 관리
   const { values, errors, touched, getInputProps } =
     useForm<UserSigninInformation>({
       initialValue: {
@@ -23,6 +26,7 @@ const LoginPage = () => {
       validate: validateSignin,
     });
 
+  // 로그인 폼 제출 시 호출되는 함수
   const handleSubmit = async () => {
     try {
       await login(values);

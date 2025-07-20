@@ -46,11 +46,14 @@ const protectedRoutes: RouteObject[] = [
   },
 ];
 
+// public + protected 라우트를 모두 포함시켜 하나의 라우터 구성
 const router = createBrowserRouter([...publicRoutes, ...protectedRoutes]);
 
 function App() {
   return (
+    // 전역 인증 상태를 위한 Provider로 감싸기
     <AuthProvider>
+      {/* 생성한 라우터를 application에 적용 */}
       <RouterProvider router={router} />
     </AuthProvider>
   );
