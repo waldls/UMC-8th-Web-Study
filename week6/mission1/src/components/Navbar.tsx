@@ -14,6 +14,7 @@ const Navbar = () => {
           SpinningSpinning Dolimpan 🌀
         </Link>
         <div className="space-x-6">
+          {/* accessToken이 없는 경우 - 로그인 안 됨 */}
           {!accessToken && (
             <>
               <Link
@@ -30,6 +31,7 @@ const Navbar = () => {
               </Link>
             </>
           )}
+          {/* accessToken이 있는 경우 - 로그인 됨 */}
           {accessToken && (
             <Link
               to={"/my"}

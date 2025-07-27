@@ -52,10 +52,11 @@ const protectedRoutes: RouteObject[] = [
 
 const router = createBrowserRouter([...publicRoutes, ...protectedRoutes]);
 
+// QueryClient를 생성하여 React Query의 전역 설정을 정의
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 3,
+      retry: 3, // 쿼리 실패 시 최대 3번까지 자동 재시도
     },
   },
 });
@@ -66,6 +67,7 @@ function App() {
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
+      {/* 개발 환경에서만 React Query Devtools를 보여줌 (개발 편의 도구) */}
       {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   );
