@@ -1,6 +1,5 @@
 import { PAGINATION_ORDER } from "../enums/common";
 import useGetInfiniteLpList from "../hooks/queries/useGetInfiniteLpList";
-import useGetLpList from "../hooks/queries/useGetLpList";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import LpCard from "../components/LpCard/LpCard";
