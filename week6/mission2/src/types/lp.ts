@@ -11,6 +11,7 @@ export type Likes = {
   lpId: number;
 };
 
+// 타입 구조 수정
 export type Lp = {
   id: number;
   title: string;

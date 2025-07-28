@@ -7,6 +7,7 @@ export type CommonResponse<T> = {
   data: T;
 };
 
+// mission1에서 잘못된 타입 정의 수정
 export type CursorBasedResponse<T> = CommonResponse<{
   data: T;
   nextCursor: number | null;

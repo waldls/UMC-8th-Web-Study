@@ -1,3 +1,4 @@
+// lp 카드가 로딩 중일 때 보여주는 스켈레톤 UI 컴포넌트
 const LpCardSkeleton = () => {
   return (
     <div className="relative rounded-lg overflow-hidden shadow-lg animate-pulse">
