@@ -7,6 +7,7 @@ import {
 import { axiosInstance } from "./axios";
 import { RequestLpDto } from "../types/lp";
 
+// Lp 목록 조회
 export const getLpList = async (
   PaginationDto: PaginationDto
 ): Promise<ResponseLpListDto> => {
@@ -17,6 +18,7 @@ export const getLpList = async (
   return data;
 };
 
+// Lp 상세 조회
 export const getLpDetail = async ({
   lpId,
 }: RequestLpDto): Promise<ResponseLpDto> => {
@@ -25,6 +27,7 @@ export const getLpDetail = async ({
   return data;
 };
 
+// 게시글 좋아요
 export const postLike = async ({
   lpId,
 }: RequestLpDto): Promise<ResponseLikeLpDto> => {
@@ -32,6 +35,7 @@ export const postLike = async ({
   return data;
 };
 
+// 게시글 좋아요 취소
 export const deleteLike = async ({
   lpId,
 }: RequestLpDto): Promise<ResponseLikeLpDto> => {
