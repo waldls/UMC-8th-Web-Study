@@ -1,19 +1,25 @@
 import { useState, useEffect } from "react";
 
+/**
+ * useDebounce 훅
+ * - value가 바뀐 후 일정 시간(delay) 동안 변화가 없을 때만 그 값을 반영함
+ * - 검색창 자동완성, API 호출 최적화 등에 유용함
+ */
+
 function useDebounce<T>(value: T, delay: number) {
+  // 디바운싱된 값 저장할 state
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
-  // value, delay가 변경될 때마다 실행
+
   useEffect(() => {
-    // delay (ms) 이후에 실행합니다.
-    // delay 시간 후에 value를 debouncedValue로 업데이트하는 타이머를 시작합니다.
+    // delay (ms) 후에 value를 debouncedValue로 설정
     const handler = setTimeout(() => setDebouncedValue(value), delay);
 
-    // value가 변경되면, 기존 타이머를 지워서 업데이트를 취소합니다.
-    // 값이 계속 바뀔 때마다 마지막에 멈춘 값만 업데이트 됩니다.
+    // 다음 effect 실행 전에 이전 타이머 제거 (cleanup)
+    // 값이 계속 바뀌면 타이머 초기화됨 -> 마지막 값만 반영됨
     return () => clearTimeout(handler);
-  }, [value, delay]);
+  }, [value, delay]); // value나 delay가 바뀌면 다시 실행됨
 
-  // 최종적으로 '잠시 기다린 후의' 값을 반환합니다.
+  // delay 지나고 안정된 값 반환
   return debouncedValue;
 }
 
