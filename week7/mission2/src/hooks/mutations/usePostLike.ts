@@ -5,62 +5,71 @@ import { QUERY_KEY } from "../../constants/key";
 import { Likes, ResponseLpDto } from "../../types/lp";
 import { ResponseMyInfoDto } from "../../types/auth";
 
+// 좋아요 요청을 보내는 커스텀 훅
 function usePostLike() {
   return useMutation({
     mutationFn: postLike,
-    // onMutate -> API 요청 이전에 호출되는 친구
-    // UI에 바로 변경을 보여주기 위해 Cache 업데이트
+
+    // ✅ 요청 직전에 실행됨 (Optimistic Update)
+    // 실제 API 응답이 오기 전에 UI를 미리 업데이트해서 반응성을 높임
     onMutate: async (lp) => {
-      // 1. 이 게시글에 관련된 쿼리를 취소 (캐시된 데이터를 새로 불러오는 요청)
+      // 1. 해당 게시글에 대한 기존 쿼리를 중단시킴 (중복 요청 방지)
       await queryClient.cancelQueries({
         queryKey: [QUERY_KEY.lps, lp.lpId],
       });
 
-      // 2. 현재 게시글의 데이터를 캐시에서 가져옴
+      // 2. 현재 캐시에 저장된 게시글 데이터를 가져옴
       const previousLpPost = queryClient.getQueryData<ResponseLpDto>([
         QUERY_KEY.lps,
         lp.lpId,
       ]);
 
-      // 게시글 데이터를 복사해서 NewLpPost라는 새로운 객체를 만듦
-      // 복사하는 가장 큰 이유는 나중에 오류가 발생했을 때 이전 상태로 되돌리기 위해서라고 생각하기
+      // 3. 이전 데이터를 복사하여 새 객체 newLpPost 생성 (불변성 유지)
       const newLpPost = { ...previousLpPost };
 
-      // 게시글에 저장된 좋아요 목록에서 현재 내가 눌렀던 좋아요의 위치를 찾아야 함
+      // 4. 현재 로그인한 사용자의 ID를 가져옴
       const me = queryClient.getQueryData<ResponseMyInfoDto>([
         QUERY_KEY.myInfo,
       ]);
       const userId = Number(me?.data.id);
 
+      // 5. 좋아요 목록에서 현재 유저의 좋아요가 있는지 확인
       const likedIndex =
         previousLpPost?.data.likes.findIndex(
           (like) => like.userId === userId
         ) ?? -1;
 
+      // 6. 이미 좋아요를 눌렀다면 제거, 아니라면 추가
       if (likedIndex >= 0) {
-        previousLpPost?.data.likes.splice(likedIndex, 1);
+        previousLpPost?.data.likes.splice(likedIndex, 1); // 좋아요 취소
       } else {
         const newLike = { userId, lpId: lp.lpId } as Likes;
-        previousLpPost?.data.likes.push(newLike);
+        previousLpPost?.data.likes.push(newLike); // 좋아요 추가
       }
 
       console.log(newLpPost);
-      // 업데이트된 게시글 데이터를 캐시에 저장
-      // 이렇게 하면 UI가 바로 업데이트 됨, 사용자가 변화를 확인할 수 있음
+
+      // 7. 수정된 게시글 데이터를 캐시에 저장 (UI가 즉시 반영됨)
       queryClient.setQueryData([QUERY_KEY.lps, lp.lpId], newLpPost);
 
+      // 8. 이후의 에러 복구 등을 위한 이전 상태와 새로운 상태를 반환
       return { previousLpPost, newLpPost };
     },
 
+    // ❌ 에러 발생 시 실행됨
+    // optimistic update로 바뀐 캐시를 원래 상태로 되돌림
     onError: (err, newLp, context) => {
       console.log(err, newLp);
+
+      // 캐시를 원래의 상태(previousLpPost)로 롤백
       queryClient.setQueryData(
         [QUERY_KEY.lps, newLp.lpId],
         context?.previousLpPost?.data.id
       );
     },
 
-    // onSettled는 API 요청이 끝난 후 (성공하든 실패하든 실행)
+    // ✅ 성공이든 실패든 무조건 마지막에 실행됨
+    // 서버에서 최종 데이터를 다시 가져와서 캐시와 동기화
     onSettled: async (data, error, variables, context) => {
       await queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.lps, variables.lpId],
