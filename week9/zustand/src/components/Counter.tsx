@@ -12,9 +12,11 @@ const Counter = () => {
   );
 
   return (
-    <div>
-      <h1>{count}</h1>
-      <CounterButton />
+    <div className="flex flex-col items-center justify-center mt-10 gap-10">
+      <div className="w-[280px] py-6 px-4 border border-gray-300 rounded-lg shadow-md text-center">
+        <h1 className="text-xl font-semibold text-gray-800 mb-4">{count}</h1>
+        <CounterButton />
+      </div>
     </div>
   );
 };

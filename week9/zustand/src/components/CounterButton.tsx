@@ -9,9 +9,19 @@ const CounterButton = () => {
   const { increment, decrement } = useCounterActions();
 
   return (
-    <div>
-      <button onClick={increment}>증가</button>
-      <button onClick={decrement}>감소</button>
+    <div className="flex gap-4 justify-center">
+      <button
+        className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-500 transition"
+        onClick={increment}
+      >
+        증가
+      </button>
+      <button
+        className="px-4 py-2 bg-rose-400 text-white rounded hover:bg-rose-500 transition"
+        onClick={decrement}
+      >
+        감소
+      </button>
     </div>
   );
 };
