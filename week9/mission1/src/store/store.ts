@@ -1,21 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "../slices/cartSlice";
 
-// 1. 저장소 생성
+// 1. Redux 스토어 생성 함수
 function createStore() {
   const store = configureStore({
-    // 2. 리듀서 설정
+    // 2. slice reducer들을 등록
     reducer: { cart: cartReducer },
   });
 
   return store;
 }
 
-// store를 활용할 수 있도록 내보내야 함
-// 여기서 실행해서 스토어를 빼줌
-// 싱글톤패턴
+// 3. 스토어 인스턴스를 생성하고 내보냄
+// - 전역에서 동일한 인스턴스를 사용하기 위해 싱글톤 패턴 적용
 const store = createStore();
 export default store;
+
+// 4. 타입 추론을 통해 루트 상태 및 디스패치 타입 정의
+// - useSelector, useDispatch에서 타입을 명확히 하기 위해 사용
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

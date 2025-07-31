@@ -4,9 +4,11 @@ import { useEffect } from "react";
 import { calculateTotals } from "../slices/cartSlice";
 
 const Navbar = () => {
+  // Redux store에서 cart 상태 가져오기
   const { amount, cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
+  // cartItems가 변경될 때마다 총 수량/금액 재계산
   useEffect(() => {
     dispatch(calculateTotals());
   }, [dispatch, cartItems]);

@@ -2,6 +2,7 @@ import { useSelector } from "../hooks/useCustomRedux";
 import CartItem from "./CartItem";
 
 const CartList = () => {
+  // Redux store에서 cartItems 배열 가져오기
   const { cartItems } = useSelector((state) => state.cart);
 
   return (
