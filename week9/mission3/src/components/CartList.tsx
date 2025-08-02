@@ -2,8 +2,8 @@ import { useCartActions, useCartInfo } from "../hooks/useCartStore";
 import CartItem from "./CartItem";
 
 const CartList = () => {
-  const { cartItems } = useCartInfo();
-  const { clearCart } = useCartActions();
+  const { cartItems } = useCartInfo(); // 상태
+  const { clearCart } = useCartActions(); // 액션
 
   const handleAllClearButton = () => {
     clearCart();

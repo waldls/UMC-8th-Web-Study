@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useCartActions, useCartInfo } from "../hooks/useCartStore";
 
 const Navbar = () => {
-  const { amount, cartItems } = useCartInfo();
-  const { calculateTotals } = useCartActions();
+  const { amount, cartItems } = useCartInfo(); // 상태
+  const { calculateTotals } = useCartActions(); // 액션
 
   useEffect(() => {
     calculateTotals();
