@@ -1,3 +1,4 @@
+// 체크박스(SelectBox)에 사용할 props 타입 정의
 interface SelectBoxProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
@@ -6,6 +7,7 @@ interface SelectBoxProps {
   className?: string;
 }
 
+// 커스텀 체크박스 컴포넌트
 export const SelectBox = ({
   checked,
   onChange,

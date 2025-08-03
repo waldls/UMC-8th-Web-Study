@@ -5,6 +5,7 @@ import { SelectBox } from "./SelectBox";
 import LanguageSelector from "./LanguageSelector";
 import { LANGUAGE_OPTIONS } from "../constants/movie";
 
+// 부모(Homepage)로부터 필터 변경 시 호출할 콜백 props 전달
 interface MovieFilterProps {
   onChange: (filter: MovieFilters) => void;
 }
@@ -14,13 +15,14 @@ const MovieFilter = ({ onChange }: MovieFilterProps) => {
   const [includeAdult, setIncludeAdult] = useState<boolean>(false);
   const [language, setLanguage] = useState<MovieLanguage>("ko-KR");
 
+  // '검색하기' 버튼 클릭 시 필터 객체 생성 후 부모로 전달
   const handleSubmit = () => {
     const filters: MovieFilters = {
       query,
       include_adult: includeAdult,
       language,
     };
-    onChange(filters);
+    onChange(filters); // 컴포넌트에 필터 전달
   };
 
   return (
@@ -78,4 +80,5 @@ const MovieFilter = ({ onChange }: MovieFilterProps) => {
   );
 };
 
+// props가 바뀌지 않으면 리렌더링 x
 export default memo(MovieFilter);
