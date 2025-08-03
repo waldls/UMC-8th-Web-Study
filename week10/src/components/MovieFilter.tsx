@@ -25,15 +25,17 @@ const MovieFilter = ({ onChange }: MovieFilterProps) => {
 
   return (
     <div className="transform space-y-6 rounded-2xl border-gray-300 bg-white p-6 shadow-xl transition-all hover:shadow-2xl mb-10">
-      <div className="flex flex-wrap gap-6">
-        <div className="min-w-[450px] flex-1">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6">
+        {/* 영화 제목 입력 */}
+        <div className="w-full sm:flex-1">
           <label className="mb-2 block text-sm font-medium text-gray-700">
             🎬영화 제목
           </label>
           <Input value={query} onChange={setQuery} />
         </div>
 
-        <div className="min-w-[250px] flex-1">
+        {/* 성인 콘텐츠 체크박스 */}
+        <div className="w-full sm:flex-1">
           <label className="mb-2 block text-sm font-medium text-gray-700">
             ⚙️옵션
           </label>
@@ -46,7 +48,8 @@ const MovieFilter = ({ onChange }: MovieFilterProps) => {
           />
         </div>
 
-        <div className="min-w-[250px] flex-1">
+        {/* 언어 선택 */}
+        <div className="w-full sm:flex-1">
           <label className="mb-2 block text-sm font-medium text-gray-700">
             🌐언어
           </label>
@@ -58,13 +61,14 @@ const MovieFilter = ({ onChange }: MovieFilterProps) => {
           />
         </div>
 
+        {/* 검색 버튼 */}
         <div className="pt-4">
           <button
             onClick={handleSubmit}
             className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 
-             hover:brightness-110 text-white font-semibold py-2 px-4 rounded 
-             flex items-center gap-2 shadow transform hover:scale-105 
-             transition-transform duration-200"
+           hover:brightness-110 text-white font-semibold py-2 px-4 rounded 
+           flex items-center gap-2 shadow transform hover:scale-105 
+           transition-transform duration-200"
           >
             검색하기
           </button>
