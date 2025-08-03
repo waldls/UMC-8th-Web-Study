@@ -1,19 +1,22 @@
 import type { Movie } from "../types/movie";
 import fallbackImage from "../assets/no-poster.png";
 
+// props 타입 정의 : 영화 정보 + 모달 닫기 함수
 interface MovieModalProps {
   movie: Movie;
   onClose: () => void;
 }
 
+// 영화 상세 정보 모달 컴포넌트
 const MovieModal = ({ movie, onClose }: MovieModalProps) => {
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
   const backdropBaseUrl = "https://image.tmdb.org/t/p/original";
 
   return (
+    // 전체 모달 배경 : 중앙 정렬 + 블러 + 반투명 오버레이
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center px-4">
       <div className="relative bg-white rounded-xl w-full max-w-3xl overflow-hidden">
-        {/* 상단 가로 이미지 */}
+        {/* 상단 배경 이미지 영역 (backdrop_path가 있을 경우만 표시) */}
         {movie.backdrop_path && (
           <div className="relative h-48 w-full">
             <img
@@ -21,12 +24,14 @@ const MovieModal = ({ movie, onClose }: MovieModalProps) => {
               alt="backdrop"
               className="w-full h-full object-cover"
             />
+            {/* 닫기 버튼 (이미지 우상단) */}
             <button
               onClick={onClose}
               className="absolute top-4 right-4 text-white text-2xl hover:text-gray-300"
             >
               ✕
             </button>
+            {/* 영화 제목과 원제목 (이미지 좌하단 오버레이) */}
             <div className="absolute bottom-4 left-6 text-white">
               <h2 className="text-2xl font-bold">{movie.title}</h2>
               <p className="text-sm italic">{movie.original_title}</p>
@@ -65,7 +70,7 @@ const MovieModal = ({ movie, onClose }: MovieModalProps) => {
               {movie.release_date || "정보 없음"}
             </p>
 
-            {/* 인기도 */}
+            {/* 인기도 게이지 바 */}
             <p className="text-sm text-gray-700 font-semibold">인기도</p>
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div
@@ -81,6 +86,7 @@ const MovieModal = ({ movie, onClose }: MovieModalProps) => {
 
             {/* 버튼 영역 */}
             <div className="mt-6 flex justify-center gap-4">
+              {/* IMDb 검색 버튼 */}
               <a
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(
                   movie.title
@@ -94,6 +100,7 @@ const MovieModal = ({ movie, onClose }: MovieModalProps) => {
               >
                 IMDb에서 검색
               </a>
+              {/* 닫기 버튼 */}
               <button
                 onClick={onClose}
                 className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
