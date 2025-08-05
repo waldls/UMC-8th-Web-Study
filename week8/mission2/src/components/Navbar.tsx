@@ -39,7 +39,7 @@ const Navbar = ({ onHoverChange }: NavbarProps) => {
         <Link
           to="/"
           className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                 text-base md:text-xl font-bold text-gray-900 dark:text-white text-center whitespace-nowrap"
+                 text-base md:text-xl font-bold text-pink-600 dark:text-white text-center whitespace-nowrap"
         >
           SpinningSpinning Dolimpan 🌀
         </Link>
