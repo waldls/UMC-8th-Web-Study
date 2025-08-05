@@ -51,7 +51,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-black text-black">
       <div className="max-w-screen-lg mx-auto px-4 py-10">
         {/* 사이트 타이틀 */}
         <h1 className="text-4xl sm:text-5xl font-extrabold text-center mb-10">
