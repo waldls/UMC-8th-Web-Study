@@ -51,9 +51,7 @@ const CreateLpModal = ({ onClose, onSuccess }: CreateLpModalProps) => {
   };
 
   return (
-    // 어두운 배경 오버레이
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      {/* 모달 본체 */}
+    <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-50">
       <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-[90%] max-w-lg relative">
         {/* X 버튼 */}
         <button
