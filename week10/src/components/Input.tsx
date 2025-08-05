@@ -15,8 +15,8 @@ export const Input = ({
 }: InputProps) => {
   return (
     <input
-      className={`w-full rounded-md  border border-gray-300 p-2 shadow-sm
-            focus:border-blue-500 focus:ring-blue-500 ${className}`}
+      className={`w-full rounded-lg border border-gray-300 px-4 py-2
+        shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}
