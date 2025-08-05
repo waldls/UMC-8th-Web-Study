@@ -24,13 +24,13 @@ const Navbar = ({ onHoverChange }: NavbarProps) => {
   };
 
   return (
-    <nav className="relative bg-white dark:bg-gray-900 shadow-md w-full z-10">
+    <nav className="relative bg-black dark:bg-gray-100 shadow-md w-full z-10">
       <div className="flex items-center justify-between flex-wrap p-4">
         {/* ☰ 아이콘 */}
         <div
           onMouseEnter={() => onHoverChange(true)}
           onMouseLeave={() => onHoverChange(false)}
-          className="text-2xl mr-4 cursor-pointer"
+          className="text-2xl mr-4 cursor-pointer text-pink-600"
         >
           ☰
         </div>
@@ -39,7 +39,7 @@ const Navbar = ({ onHoverChange }: NavbarProps) => {
         <Link
           to="/"
           className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                 text-base md:text-xl font-bold text-pink-600 dark:text-white text-center whitespace-nowrap"
+                 text-base md:text-xl font-bold text-pink-600 dark:text-black text-center whitespace-nowrap"
         >
           SpinningSpinning Dolimpan 🌀
         </Link>
@@ -50,13 +50,13 @@ const Navbar = ({ onHoverChange }: NavbarProps) => {
             <>
               <Link
                 to="/login"
-                className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-500"
+                className="text-sm  text-pink-600 dark:text-black hover:text-pink-700"
               >
                 로그인
               </Link>
               <Link
                 to="/signup"
-                className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-500"
+                className="text-sm  text-pink-600 dark:text-black hover:text-pink-700"
               >
                 회원가입
               </Link>
@@ -64,20 +64,20 @@ const Navbar = ({ onHoverChange }: NavbarProps) => {
           ) : (
             <>
               {accessToken && isSuccess && (
-                <span className="text-sm text-gray-700 dark:text-gray-300 whitespace-nowrap truncate max-w-[150px]">
+                <span className="text-sm  text-pink-600 dark:text-black whitespace-nowrap truncate max-w-[150px]">
                   {userInfo?.data.name}님 반갑습니다.
                 </span>
               )}
 
               <button
                 onClick={handleLogout}
-                className="text-sm text-gray-700 dark:text-gray-300 hover:text-red-500"
+                className="text-sm text-pink-600 dark:text-black hover:text-pink-700"
               >
                 로그아웃
               </button>
               <Link
                 to="/my"
-                className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-500"
+                className="text-sm  text-pink-600 dark:text-black hover:text-pink-700"
               >
                 마이 페이지
               </Link>
@@ -85,7 +85,7 @@ const Navbar = ({ onHoverChange }: NavbarProps) => {
           )}
           <Link
             to="/search"
-            className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-500"
+            className="text-sm  text-pink-600 dark:text-black hover:text-pink-700"
           >
             검색
           </Link>
