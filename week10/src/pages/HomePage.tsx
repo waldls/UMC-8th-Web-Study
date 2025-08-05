@@ -51,34 +51,40 @@ export default function HomePage() {
   }
 
   return (
-    <div className="container">
-      {/* 사이트 타이틀 */}
-      <h1 className="text-5xl font-extrabold text-center mb-6">
-        <span
-          className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500
-               bg-clip-text text-transparent animate-pulse"
-        >
-          MovieSite🎬
-        </span>
-      </h1>
-      {/* 영화 필터 입력 영역 */}
-      <MovieFilter onChange={handleMovieFilters} />
-      {/* 로딩 중일 때 */}
-      {isLoading ? (
-        <div>로딩 중입니다...</div>
-      ) : (
-        <>
-          {/* 영화 목록 출력 + 클릭 시 모달 열기 */}
-          <MovieList
-            movies={data?.results || []}
-            onMovieClick={handleMovieClick}
-          />
-          {/* 영화 상세 모달 */}
-          {isModalOpen && selectedMovie && (
-            <MovieModal movie={selectedMovie} onClose={handleCloseModal} />
-          )}
-        </>
-      )}
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white">
+      <div className="max-w-screen-lg mx-auto px-4 py-10">
+        {/* 사이트 타이틀 */}
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-center mb-10">
+          <span
+            className="bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-400
+             bg-clip-text text-transparent animate-pulse"
+          >
+            Cinemas 🎬
+          </span>
+        </h1>
+        {/* 영화 필터 입력 영역 */}
+        <div className="mb-8">
+          <MovieFilter onChange={handleMovieFilters} />
+        </div>
+        {/* 로딩 중일 때 */}
+        {isLoading ? (
+          <div className="flex justify-center items-center h-40 text-lg text-gray-300 animate-pulse">
+            로딩 중입니다...
+          </div>
+        ) : (
+          <>
+            {/* 영화 목록 출력 + 클릭 시 모달 열기 */}
+            <MovieList
+              movies={data?.results || []}
+              onMovieClick={handleMovieClick}
+            />
+            {/* 영화 상세 모달 */}
+            {isModalOpen && selectedMovie && (
+              <MovieModal movie={selectedMovie} onClose={handleCloseModal} />
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }
