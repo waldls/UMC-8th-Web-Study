@@ -1,13 +1,13 @@
-import { useCartActions, useCartInfo } from "../hooks/useCartStore";
+import { useCartInfo } from "../hooks/useCartStore";
 import CartItem from "./CartItem";
 
 const CartList = () => {
   const { cartItems } = useCartInfo(); // 상태
-  const { clearCart } = useCartActions(); // 액션
+  //const { clearCart } = useCartActions(); // 액션
 
-  const handleAllClearButton = () => {
-    clearCart();
-  };
+  //const handleAllClearButton = () => {
+  //clearCart();
+  //};
 
   return (
     <div className="flex flex-col items-center justify-center">

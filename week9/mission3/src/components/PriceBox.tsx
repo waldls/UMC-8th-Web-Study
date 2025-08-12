@@ -5,11 +5,11 @@ import Modal from "./Modal";
 const PriceBox = () => {
   const { total } = useCartInfo(); // Zustand에서 가져옴
   const isOpen = useModalStore((state) => state.isOpen); // Zustand 모달 상태
-  const offModal = useModalStore((state) => state.offModal); // 모달 닫기 액션
+  // const offModal = useModalStore((state) => state.offModal); // 모달 닫기 액션
 
-  const handleClearCart = () => {
-    // clearCart는 Modal에서 호출되므로 여기에선 안 써도 됨
-  };
+  // const handleClearCart = () => {
+  // clearCart는 Modal에서 호출되므로 여기에선 안 써도 됨
+  //};
 
   const handleInitializeCart = () => {
     useModalStore.getState().onModal(); // 모달 열기
